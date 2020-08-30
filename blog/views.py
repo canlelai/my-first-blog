@@ -4,6 +4,7 @@ from .models import Post
 from .models import Add
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
+from .forms import AddForm
 from django.shortcuts import redirect
 
 def post_list(request):
@@ -46,9 +47,30 @@ def cv(request):
     return render(request, 'cv/cv.html', {'adds': adds})
 
 def add_new(request):
-    form = AddForm()
-    return render(request, 'cv/cv.edit', {'form': form})
+    if request.method == "POST":
+        form = AddForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('cv_detail', pk=post.pk)
+    else:
+        form = AddForm()
+    return render(request, 'cv/cv_edit.html', {'form': form})
 
-def add_detail(request, pk):
+def cv_detail(request, pk):
     add = get_object_or_404(Add, pk=pk)
-    return render(request, 'cv/add_detail.html', {'add': add})
+    return render(request, 'cv/cv_detail.html', {'add': add})
+
+def cv_edit(request, pk):
+    post = get_object_or_404(Add, pk=pk)
+    if request.method == "POST":
+        form = AddForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('cv_detail', pk=post.pk)
+    else:
+        form = AddForm(instance=post)
+    return render(request, 'cv/cv_edit.html', {'form': form})

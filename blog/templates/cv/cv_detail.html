@@ -1,0 +1,12 @@
+{% extends 'cv/base.html' %}
+{% block content %}
+<div class="post">
+  {% if user.is_authenticated %}
+
+  <a class="btn btn-default" href="{% url 'cv_edit' pk=add.pk %}"><span class="glyphicon glyphicon-pencil"></ span></a>
+  {% endif %}
+
+  <h2>{{ add.title }}</h2>
+  <p>{{ add.text|linebreaksbr }}</p>
+</div>
+{% endblock %}
