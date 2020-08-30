@@ -8,11 +8,14 @@ color: #ffffff;
 font-size: 36pt;
 text-decoration: none;
 }
+h3 {
+color: #C25100;
+}
 .content {
 margin-left: 40px;
 }
 h1, h2, h3, h4 {
-font-family: 'Lobster', cursive;
+font-family: 'Lobsters', cursive;
 }
 .date {
 color: #828282;
