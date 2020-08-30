@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
+from .models import Add
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
@@ -41,4 +42,13 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 def cv(request):
-    return render(request, 'cv/cv.html', {})
+    adds = Add.objects.all
+    return render(request, 'cv/cv.html', {'adds': adds})
+
+def add_new(request):
+    form = AddForm()
+    return render(request, 'cv/cv.edit', {'form': form})
+
+def add_detail(request, pk):
+    add = get_object_or_404(Add, pk=pk)
+    return render(request, 'cv/add_detail.html', {'add': add})

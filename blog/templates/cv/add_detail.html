@@ -1,10 +1,7 @@
 {% extends 'cv/base.html' %}
-
 {% block content %}
-{% for add in adds %}
 <div class="post">
-  <h2><a href="{% url 'add_detail' pk=add.pk %}">{{ add.title }}</a></h2>
+  <h2>{{ add.title }}</h2>
   <p>{{ add.text|linebreaksbr }}</p>
 </div>
-{% endfor %}
 {% endblock %}
