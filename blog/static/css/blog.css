@@ -8,8 +8,8 @@ color: #ffffff;
 font-size: 36pt;
 text-decoration: none;
 }
-h3 {
-color: #C25100;
+.page-header h3, .page-header h3 a, .page-header h3 a:visited, .page-header h3 a:active {
+color: #ffffff;
 }
 .content {
 margin-left: 40px;
