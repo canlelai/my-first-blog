@@ -16,6 +16,8 @@ class NewVisitorTest(unittest.TestCase):
 
         # She notices the page title and header mention Canle's CV
         self.assertIn("Canle's CV", self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn("Canle's CV", header_text)
         self.fail('Finish the test!')
 
         # She is invited to enter a CV straight away
